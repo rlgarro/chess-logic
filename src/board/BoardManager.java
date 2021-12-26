@@ -23,7 +23,7 @@ public class BoardManager {
             if (piece.moveIsValid(board, move)) {
 
                 // whether or not a coronation
-                if (pawnReplacement.equals(""))
+                if (pawnReplacement == null)
                     board.setPieceAt(move.getX(), move.getY(), move.getMoveName());
 
                 else

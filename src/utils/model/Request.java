@@ -10,7 +10,7 @@ public class Request {
     public Request(Board board, Move move) {
         this.board = board;
         this.move = move;
-        this.pawnReplacementPiece = "";
+        this.pawnReplacementPiece = null;
     }
 
     public Request(Board board, Move move, String pawnRep) {
