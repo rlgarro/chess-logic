@@ -6,6 +6,7 @@ import utils.Move;
 
 public class Knight extends Piece {
 
+
     @Override
     public Boolean isPossibleMove(Board board, Move moveTo) {
         Boolean isPossible = false;
@@ -29,6 +30,7 @@ public class Knight extends Piece {
 
     public Knight(String name, Boolean isWhite, int x, int y) {
         super(name, isWhite, x, y);
+        this.pieceNumber = 4; 
     }
 
 }

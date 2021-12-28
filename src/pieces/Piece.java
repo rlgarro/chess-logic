@@ -8,6 +8,7 @@ public abstract class Piece {
     protected int x;
     protected int y;
     protected String name;
+    protected int pieceNumber = -1;
 
     public Boolean moveIsValid(Board board, Move move) {
 

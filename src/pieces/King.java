@@ -29,7 +29,7 @@ public class King extends Piece {
         int kingY = kingPos.getX();
 
         // for each color
-        if (board.getPieceAt(kingX, kingY).length() == 2) {
+        if (board.getPieceAt(kingX, kingY).getName().length() == 2) {
 
             // check in same row
             if (attackedByXorY(board, kingPos, false))
@@ -84,6 +84,9 @@ public class King extends Piece {
         for (int i = 0; i < 8; i++) {
             String pieceHor = board.getPieceAt(kingPos.getX(), i);
             String pieceVer = board.getPieceAt(i, kingPos.getY());
+
+            if (pieceHor == null || pieceVer == null)
+              return false;
 
             // before king's position (vertically)
             if (i < kingPos.getX()) {
@@ -144,6 +147,9 @@ public class King extends Piece {
 
             String piece = board.getPieceAt(x, y);
 
+            if (piece == null)
+              return false;
+
             Boolean isBelow = x < kingX;
 
             // last piece decides whether attacked or not
@@ -189,6 +195,9 @@ public class King extends Piece {
 
             String piece = board.getPieceAt(x, y);
 
+            if (piece == null)
+              return false;
+
             Boolean isBelow = x < kingX;
 
             if (isBelow) {
@@ -215,12 +224,12 @@ public class King extends Piece {
         
         for (Move horsePos : horsesPositions) {
             if (isWhite) {
-                if (board.getPieceAt(horsePos.getX(), horsePos.getY()).equals("bk")) {
+                if (board.isBlackKnightAt(horsePos.getX(), horsePos.getY())) {
                     attackedByHorses = true;
                     break;
                 }
             } else {
-                if (board.getPieceAt(horsePos.getX(), horsePos.getY()).equals("k")) {
+                if (board.isKnightAt(horsePos.getX(), horsePos.getY())) {
                     attackedByHorses = true;
                     break;
                 }
@@ -235,6 +244,9 @@ public class King extends Piece {
         // check whether there's a pawn below or above king
         String pieceAbove = board.getPieceAt((int)(x+1), (int)(y+1));
         String pieceBelow = board.getPieceAt((int)(x-1), (int)(y-1));
+
+        if (pieceAbove == null || pieceBelow == null)
+          return false;
 
         if (isWhite && pieceAbove.equals("bp")) {
             return true;
@@ -263,6 +275,9 @@ public class King extends Piece {
     public static Boolean pieceIsKing(Board board, Move kingPosition) {
         String piece = board.getPieceAt(kingPosition.getX(), kingPosition.getY());
 
+        if (pieceAt == null)
+          return false;
+
         if (!(piece.equals("K")) || !(piece.equals("bK")) || piece.equals("invalid")) {
             return false;
         }
@@ -274,6 +289,9 @@ public class King extends Piece {
         int xTo = moveTo.getX();
         int yTo = moveTo.getY();
         String pieceAt = board.getPieceAt(xTo, yTo);
+
+        if (pieceAt == null)
+          return false;
 
         if (xTo == this.x+1 || xTo == this.x-1) {
             if (yTo == this.y)

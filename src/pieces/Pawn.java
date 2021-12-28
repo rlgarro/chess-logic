@@ -17,6 +17,9 @@ public class Pawn extends Piece {
         int xTo = moveTo.getX();
         int yTo = moveTo.getY();
 
+        if(Board.argsOutOfBoundaries())
+          return false;
+
         // comparing if it follows the same movement a pawn does, based on its color
         if (this.isWhite) {
             Boolean pieceAtIsBlack = board.getPieceAt(xTo, yTo).length() == 2;

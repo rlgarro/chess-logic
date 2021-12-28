@@ -49,7 +49,7 @@ public class BoardManager {
         String piece = board.getPieceAt(x, y);
         Boolean isWhite = false; 
 
-        if (piece.equals("invalid"))
+        if (piece == null)
             throw new IllegalMoveException("invalid move");
         
         else {
