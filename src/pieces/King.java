@@ -1,9 +1,10 @@
-package pieces;
+package src.pieces;
 
 import java.util.List;
 
-import board.Board;
-import utils.Move;
+import src.pieces.*;
+import src.board.Board;
+import src.utils.model.Move;
 
 public class King extends Piece {
 
@@ -14,6 +15,7 @@ public class King extends Piece {
 
     public King(String name, Boolean isWhite, int x, int y) {
         super(name, isWhite, x, y);
+        this.pieceNumber = isWhite ? 1 : -1;
     }
 
     public static Boolean kingIsUnprotected(Board board, Move kingPosition) throws IllegalMoveException {
@@ -28,8 +30,28 @@ public class King extends Piece {
         int kingX = kingPos.getX();
         int kingY = kingPos.getX();
 
-        // for each color
-        if (board.getPieceAt(kingX, kingY).getName().length() == 2) {
+        boolean isKingWhite = (board.getPieceAt(kingX, kingY)).length() == 1;
+
+        //
+        // check in same row
+        if (attackedByXorY(board, kingPos, isKingWhite))
+            return true;
+        
+        // check left diagonal
+        else if (attackedByLeftDiagonal(board, kingPos, isKingWhite))
+            return true;
+
+        // check right diagonal
+        else if (attackedByRightDiagonal(board, kingPos, isKingWhite))
+            return true;
+        
+        // by horses
+        else if (attackedByHorses(board, kingPos, isKingWhite))
+            return true;
+
+        /* for each color
+        //
+        if (board.getPieceAt(kingX, kingY).isWhite == false) {
 
             // check in same row
             if (attackedByXorY(board, kingPos, false))
@@ -65,6 +87,7 @@ public class King extends Piece {
             else if (attackedByHorses(board, kingPos, true))
                 return true;
         }
+        */
 
         return false;
     }
@@ -275,7 +298,7 @@ public class King extends Piece {
     public static Boolean pieceIsKing(Board board, Move kingPosition) {
         String piece = board.getPieceAt(kingPosition.getX(), kingPosition.getY());
 
-        if (pieceAt == null)
+        if (piece == null)
           return false;
 
         if (!(piece.equals("K")) || !(piece.equals("bK")) || piece.equals("invalid")) {

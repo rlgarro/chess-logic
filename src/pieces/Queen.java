@@ -1,8 +1,8 @@
-package pieces;
+package src.pieces;
 
-import board.Board;
-import utils.model.Move;
-import utils.MoveUtil;
+import src.board.Board;
+import src.utils.model.Move;
+import src.utils.MoveUtil;
 
 public class Queen extends Piece {
 
@@ -21,5 +21,6 @@ public class Queen extends Piece {
 
     public Queen(String name, Boolean isWhite, int x, int y) {
         super(name, isWhite, x, y);
+        this.pieceNumber = isWhite ? 2 : -2;
     }
 }

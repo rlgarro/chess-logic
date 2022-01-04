@@ -1,23 +1,24 @@
-package src.util;
+package src.utils;
 
-import java.lang.Math.abs;
+import src.utils.model.Move;
+import java.lang.Math;
 
 /*
  * Class to check for general movement type collisions.
 */
 public class MoveUtil {
 
-  private final String UP_RIGHT_DIAGONAL = "upRightDiagonal";
-  private final String DOWN_RIGHT_DIAGONAL = "downRightDiagonal";
+  private static final String UP_RIGHT_DIAGONAL = "upRightDiagonal";
+  private static final String DOWN_RIGHT_DIAGONAL = "downRightDiagonal";
 
-  private final String UP_LEFT_DIAGONAL = "upLeftDiagonal";
-  private final String DOWN_LEFT_DIAGONAL = "downLeftDiagonal";
+  private static final String UP_LEFT_DIAGONAL = "upLeftDiagonal";
+  private static final String DOWN_LEFT_DIAGONAL = "downLeftDiagonal";
 
-  private final String UP = "upHorizontal";
-  private final String DOWN = "downHorizontal";
+  private static final String UP = "upHorizontal";
+  private static final String DOWN = "downHorizontal";
 
-  private final String RIGHT = "rightHorizontal";
-  private final String LEFT = "leftHorizontal";
+  private static final String RIGHT = "rightHorizontal";
+  private static final String LEFT = "leftHorizontal";
 
   /*
    * DIAGONALS
@@ -158,8 +159,8 @@ public class MoveUtil {
     if (direction == null)
       return false;
 
-    int xIn = abs(piece.getX() - move.getX());
-    int yIn = abs(piece.getY() - move.getY());
+    int xIn = Math.abs(piece.getX() - move.getX());
+    int yIn = Math.abs(piece.getY() - move.getY());
 
     if (direction.equals(UP_RIGHT_DIAGONAL))
       return upRight(piece, board, xIn, yIn);

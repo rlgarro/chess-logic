@@ -1,7 +1,7 @@
-package pieces;
+package src.pieces;
 
-import board.Board;
-import utils.Move;
+import src.board.Board;
+import src.utils.Move;
 
 public class Bishop extends Piece {
 
@@ -12,6 +12,7 @@ public class Bishop extends Piece {
 
     public Bishop(String name, Boolean isWhite, int x, int y) {
         super(name, isWhite, x, y);
+        this.pieceNumber = isWhite ? 3 : -3;
     }
 
     @Override

@@ -1,16 +1,21 @@
-package board;
+package src.board;
 
 import java.util.List;
 import java.util.ArrayList;
-import utils.Move;
+
+import src.utils.model.Move;
+import src.pieces.Piece;
+
+import java.lang.Math;
 
 public class Board {
-    private String[][] board;   
+    private String[][] board = new String[8][8];
 
-    private final int HORSE = "k";
+    private final int KING = 1;
+    private final int BKING = -1;
 
-    private final int KING = "K";
-    private final int BKING = "bK";
+    public Board() {
+    }
 
     public Board(String[][] board) {
         this.board = board;
@@ -77,7 +82,6 @@ public class Board {
         /* SHOULD I CHECK FOR NULL? SAY NO PLS. */
         // above piece at (x, y)
         if (isKnightAt(p1x, p1y-1))
-        if (this.getPieceAt(p1x, p1y-1).contains(KING))
             horsesPositions.add(new Move("", p1x, p1y-1));
         if (isKnightAt(p1x, p1y-3))
             horsesPositions.add(new Move("", p1x, p1y-3));
@@ -147,4 +151,20 @@ public class Board {
 
         return false;
     }
+
+    public void setBoard(String[][] board) {
+        this.board = board;
+    }
+
+    public boolean isKnightAt(int x, int y) {
+      Piece p = this.getPieceAt(x, y);
+      if (p == null)
+        return false;
+
+      if (Math.abs(p.pieceNumber) == 4)
+        return true;
+
+      return false;
+    }
+
 }

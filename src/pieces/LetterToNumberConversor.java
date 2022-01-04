@@ -1,4 +1,4 @@
-package pieces;
+package src.pieces;
 
 public class LetterToNumberConversor {
 

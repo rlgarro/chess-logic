@@ -1,4 +1,4 @@
-package utils;
+package src.utils.model;
 
 public class Move {
     private String move;   

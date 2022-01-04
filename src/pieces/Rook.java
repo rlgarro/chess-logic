@@ -1,7 +1,7 @@
-package pieces;
+package src.pieces;
 
-import board.Board;
-import utils.Move;
+import src.board.Board;
+import src.utils.Move;
 
 public class Rook extends Piece {
     private Boolean isWhite;
@@ -16,6 +16,7 @@ public class Rook extends Piece {
 
     public Rook(String name, Boolean isWhite, int x, int y) {
         super(name, isWhite, x, y);
+        this.pieceNumber = isWhite ? 5 : -5;
     }
 
     @Override

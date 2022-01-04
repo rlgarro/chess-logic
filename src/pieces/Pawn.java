@@ -1,7 +1,7 @@
-package pieces;
+package src.pieces;
 
-import board.Board;
-import utils.Move;
+import src.board.Board;
+import src.utils.Move;
 
 public class Pawn extends Piece {
 
@@ -44,6 +44,7 @@ public class Pawn extends Piece {
 
     public Pawn(String name, Boolean isWhite, int x, int y) {
         super(name, isWhite, x, y);
+        this.pieceNumber = isWhite ? 6 : -6;
     }
 
 }

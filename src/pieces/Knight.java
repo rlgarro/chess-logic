@@ -1,8 +1,8 @@
-package pieces;
+package src.pieces;
 
 import java.util.List;
-import board.Board;
-import utils.Move;
+import src.board.Board;
+import src.utils.Move;
 
 public class Knight extends Piece {
 
@@ -30,7 +30,7 @@ public class Knight extends Piece {
 
     public Knight(String name, Boolean isWhite, int x, int y) {
         super(name, isWhite, x, y);
-        this.pieceNumber = 4; 
+        this.pieceNumber = isWhite ? 4 : -4; 
     }
 
 }
