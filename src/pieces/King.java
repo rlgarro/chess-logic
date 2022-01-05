@@ -1,10 +1,9 @@
-package src.pieces;
+package pieces;
 
 import java.util.List;
 
-import src.pieces.*;
-import src.board.Board;
-import src.utils.model.Move;
+import board.Board;
+import utils.model.Move;
 
 public class King extends Piece {
 

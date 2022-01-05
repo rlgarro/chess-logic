@@ -1,9 +1,9 @@
-package src.utils;
+package utils;
 
 import java.io.FileReader;
 import java.io.BufferedReader;
 
-import src.board.Board;
+import board.Board;
 
 public class BoardReader {
 

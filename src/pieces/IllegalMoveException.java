@@ -1,4 +1,4 @@
-package src.pieces;
+package pieces;
 
 public class IllegalMoveException extends Exception{
     public IllegalMoveException(final String message) {

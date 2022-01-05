@@ -1,10 +1,10 @@
 package test.calculatep;
 
-import src.board.Board;
-import src.utils.model.Move;
-import src.utils.BoardReader;
-import src.pieces.Piece;
-import src.pieces.*;
+import board.Board;
+import utils.model.Move;
+import utils.BoardReader;
+import pieces.Piece;
+import pieces.*;
 
 class Test {
 

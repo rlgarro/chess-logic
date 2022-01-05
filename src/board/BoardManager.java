@@ -2,7 +2,8 @@ package board;
 
 import pieces.IllegalMoveException;
 import pieces.*;
-import utils.*;
+import utils.model.*;
+import board.Board;
 
 public class BoardManager {
     public BoardManager() {}
@@ -47,6 +48,11 @@ public class BoardManager {
         int x = move.getX();
         int y = move.getY();
         String piece = board.getPieceAt(x, y);
+        
+        return getPieceFromString(piece, x, y);
+    }
+
+    public static Piece getPieceFromString(String piece, int x, int y) throws IllegalMoveException {
         Boolean isWhite = false; 
 
         if (piece == null)

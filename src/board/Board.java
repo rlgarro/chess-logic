@@ -1,12 +1,14 @@
-package src.board;
+package board;
+
 
 import java.util.List;
 import java.util.ArrayList;
-
-import src.utils.model.Move;
-import src.pieces.Piece;
-
 import java.lang.Math;
+
+import utils.model.Move;
+import pieces.Piece;
+import pieces.IllegalMoveException;
+
 
 public class Board {
     private String[][] board = new String[8][8];
@@ -128,21 +130,33 @@ public class Board {
     }
 
     public boolean isBlackKnightAt(int x, int y) {
-      Piece piece = this.getPieceAt(x, y);
-
-      if (piece == null)
-        return false;
-
-      return piece.getPieceNumber() == -4;
+    try {
+        Piece piece = BoardManager.getPieceFromString(this.getPieceAt(x, y), x, y);
+    
+        if (piece == null)
+            return false;
+    
+        return piece.getPieceNumber() == -4;
+        
+        } catch(IllegalMoveException e) {
+            System.out.println("ILLEGAL MOVE: " + e);
+            return false;
+        }
     }
 
     public boolean isWhiteKnightAt(int x, int y) {
-      Piece piece = this.getPieceAt(x, y);
-
-      if (piece == null)
-        return false;
-
-      return piece.getPieceNumber() == 4;
+        try {
+            Piece piece = BoardManager.getPieceFromString(this.getPieceAt(x, y), x, y);
+        
+            if (piece == null)
+                return false;
+        
+            return piece.getPieceNumber() == 4;
+            
+            } catch(IllegalMoveException e) {
+                System.out.println("ILLEGAL MOVE: " + e);
+                return false;
+            }
     }
 
     public static boolean argsOutOfBoundary(int x, int y) {
@@ -157,14 +171,17 @@ public class Board {
     }
 
     public boolean isKnightAt(int x, int y) {
-      Piece p = this.getPieceAt(x, y);
-      if (p == null)
-        return false;
-
-      if (Math.abs(p.pieceNumber) == 4)
-        return true;
-
-      return false;
+        try {
+            Piece piece = BoardManager.getPieceFromString(this.getPieceAt(x, y), x, y);
+        
+            if (piece == null)
+                return false;
+        
+            return Math.abs(piece.getPieceNumber()) == 4;
+            
+            } catch(IllegalMoveException e) {
+                System.out.println("ILLEGAL MOVE: " + e);
+                return false;
+            }
     }
-
 }

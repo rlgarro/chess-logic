@@ -1,7 +1,9 @@
-package src.utils;
+package utils;
 
-import src.utils.model.Move;
+import utils.model.Move;
 import java.lang.Math;
+import pieces.Piece;
+import board.Board;
 
 /*
  * Class to check for general movement type collisions.
@@ -116,7 +118,7 @@ public class MoveUtil {
   private static boolean right(Piece piece, Board board, int yIn) {
 
     for (int i = piece.getY(); i < yIn; i++) {
-      if (piece.pieceIsAlly(board, new Move(null, piece.getX(), i))
+      if (piece.pieceIsAlly(board, new Move(null, piece.getX(), i)))
             return false;
     }
 
@@ -126,7 +128,7 @@ public class MoveUtil {
   private static boolean left(Piece piece, Board board, int yIn) {
 
     for (int i = piece.getY(); i > yIn; i++) {
-      if (piece.pieceIsAlly(board, new Move(null, piece.getX(), i))
+      if (piece.pieceIsAlly(board, new Move(null, piece.getX(), i)))
             return false;
     }
 
@@ -136,7 +138,7 @@ public class MoveUtil {
   private static boolean up(Piece piece, Board board, int xIn) {
 
     for (int i = piece.getY(); i > xIn; i++) {
-      if (piece.pieceIsAlly(board, new Move(null, i, piece.getY()))
+      if (piece.pieceIsAlly(board, new Move(null, i, piece.getY())))
             return false;
     }
 
@@ -146,7 +148,7 @@ public class MoveUtil {
   private static boolean down(Piece piece, Board board, int yIn) {
 
     for (int i = piece.getY(); i < yIn; i++) {
-      if (piece.pieceIsAlly(board, new Move(null, i, piece.getY())
+      if (piece.pieceIsAlly(board, new Move(null, i, piece.getY())))
             return false;
     }
 
@@ -186,7 +188,6 @@ public class MoveUtil {
     else
       return down(piece, board, xIn);
 
-    return false;
   }
 
 }

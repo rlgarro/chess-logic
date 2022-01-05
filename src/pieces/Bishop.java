@@ -1,7 +1,7 @@
-package src.pieces;
+package pieces;
 
-import src.board.Board;
-import src.utils.Move;
+import board.Board;
+import utils.model.Move;
 
 public class Bishop extends Piece {
 

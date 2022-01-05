@@ -1,6 +1,6 @@
-import utils.*;
 import board.BoardManager;
-import utils.Response;
+import utils.model.Response;
+import utils.model.Request;
 
 public class ChessMoveValidator {
     public ChessMoveValidator() {}

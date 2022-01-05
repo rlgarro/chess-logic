@@ -1,7 +1,7 @@
-package src.pieces;
+package pieces;
 
-import src.board.Board;
-import src.utils.model.Move;
+import board.Board;
+import utils.model.Move;
 
 public abstract class Piece {
     protected Boolean isWhite;
@@ -66,6 +66,18 @@ public abstract class Piece {
 
     public boolean isWhite() {
       return isWhite;
+    }
+
+    public int getPieceNumber() {
+        return pieceNumber;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
     }
 
 }

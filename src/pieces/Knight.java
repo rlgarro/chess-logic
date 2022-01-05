@@ -1,8 +1,8 @@
-package src.pieces;
+package pieces;
 
 import java.util.List;
-import src.board.Board;
-import src.utils.Move;
+import board.Board;
+import utils.model.Move;
 
 public class Knight extends Piece {
 

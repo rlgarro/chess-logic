@@ -1,7 +1,7 @@
-package src.pieces;
+package pieces;
 
-import src.board.Board;
-import src.utils.Move;
+import board.Board;
+import utils.model.Move;
 
 public class Pawn extends Piece {
 
@@ -17,7 +17,7 @@ public class Pawn extends Piece {
         int xTo = moveTo.getX();
         int yTo = moveTo.getY();
 
-        if(Board.argsOutOfBoundaries())
+        if(Board.argsOutOfBoundary(xTo, yTo))
           return false;
 
         // comparing if it follows the same movement a pawn does, based on its color

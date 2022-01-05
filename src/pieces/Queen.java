@@ -1,8 +1,8 @@
-package src.pieces;
+package pieces;
 
-import src.board.Board;
-import src.utils.model.Move;
-import src.utils.MoveUtil;
+import board.Board;
+import utils.model.Move;
+import utils.MoveUtil;
 
 public class Queen extends Piece {
 
