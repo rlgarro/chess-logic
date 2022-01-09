@@ -19,6 +19,16 @@ public abstract class Piece {
         } catch(IllegalMoveException e) {
             return false;
         }
+        
+        boolean pieceAtLandingIsAlly = this.pieceIsAlly(board, move);
+        if (pieceAtLandingIsAlly)
+            return false;
+        
+        if (this.isAtSamePosition(move))
+            return false;
+
+        if (!this.isValidMovement(board, move))
+            return false;
 
         if (this.isPossibleMove(board, move) && !kingIsUnprotected)
             return true;
@@ -26,16 +36,9 @@ public abstract class Piece {
         return false;
     }
 
-    public abstract Boolean isPossibleMove(Board board, Move moveTo);
+    public abstract boolean isValidMovement(Board board, Move moveTo);
 
-    /*
-    public static Boolean pieceIsAlly(Boolean isWhite, String piece) {
-        if (isWhite && piece.length() == 2)
-            return false;
-
-        return true;
-    }
-    */
+    public abstract boolean isPossibleMove(Board board, Move moveTo);
 
     public Boolean isAtSamePosition(Move moveTo) {
         if (moveTo.getX() == this.x && moveTo.getY() == this.y) {

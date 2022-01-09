@@ -13,8 +13,8 @@ import pieces.IllegalMoveException;
 public class Board {
     private String[][] board = new String[8][8];
 
-    private final int KING = 1;
-    private final int BKING = -1;
+    private final String KING = "K";
+    private final String BKING = "bK";
 
     public Board() {
     }
@@ -160,7 +160,7 @@ public class Board {
     }
 
     public static boolean argsOutOfBoundary(int x, int y) {
-        if ((x > 7 || x < 0) || (y > 7 || y < 7))
+        if ((x > 7 || x < 0) || (y > 7 || y < 0))
             return true;
 
         return false;

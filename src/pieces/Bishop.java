@@ -2,6 +2,7 @@ package pieces;
 
 import board.Board;
 import utils.model.Move;
+import utils.MoveUtil;
 
 public class Bishop extends Piece {
 
@@ -16,9 +17,13 @@ public class Bishop extends Piece {
     }
 
     @Override
-    public Boolean isPossibleMove(Board board, Move moveTo) {
-        // TODO Auto-generated method stub
-        return null;
+    public boolean isPossibleMove(Board board, Move moveTo) {
+        return MoveUtil.calculatePossible(this, board, moveTo);
+    }
+
+    @Override
+    public boolean isValidMovement(Board board, Move moveTo) {
+        return MoveUtil.isDiagonal(this, moveTo);
     }
 
 }

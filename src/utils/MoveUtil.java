@@ -3,7 +3,9 @@ package utils;
 import utils.model.Move;
 import java.lang.Math;
 import pieces.Piece;
+import pieces.Queen;
 import board.Board;
+
 
 /*
  * Class to check for general movement type collisions.
@@ -28,12 +30,12 @@ public class MoveUtil {
 
   public static boolean upRight(Piece piece, Board board, int upIn, int rightIn) {
 
-    for (int i = piece.getX(); i < upIn; i++) {
-      for (int j = piece.getY(); j < rightIn; j++) {
-        if (piece.pieceIsAlly(board, new Move(null, i, j))) {
-          return false;
-        }
+    int y = piece.getY() + 1;
+    for (int i = piece.getX() + 1; i < upIn; i++) {
+      if (piece.pieceIsAlly(board, new Move(null, i, y))) {
+        return false;
       }
+      y++;
     }
 
     return true;
@@ -41,12 +43,12 @@ public class MoveUtil {
 
   public static boolean upLeft(Piece piece, Board board, int upIn, int rightIn) {
 
-    for (int i = piece.getX(); i < upIn; i++) {
-      for (int j = piece.getY(); j > rightIn; j--) {
-        if (piece.pieceIsAlly(board, new Move(null, i, j))) {
-          return false;
-        }
+    int y = piece.getY() - 1;
+    for (int i = piece.getX() + 1; i < upIn; i++) {
+      if (piece.pieceIsAlly(board, new Move(null, i, y))) {
+        return false;
       }
+      y--;
     }
 
     return true;
@@ -54,12 +56,12 @@ public class MoveUtil {
 
   public static boolean downRight(Piece piece, Board board, int upIn, int rightIn) {
 
-    for (int i = piece.getX(); i > upIn; i++) {
-      for (int j = piece.getY(); j < rightIn; j++) {
-        if (piece.pieceIsAlly(board, new Move(null, i, j))) {
-          return false;
-        }
+    int y = piece.getY() + 1;
+    for (int i = piece.getX() - 1; i < upIn; i++) {
+      if (piece.pieceIsAlly(board, new Move(null, i, y))) {
+        return false;
       }
+      y++;
     }
 
     return true;
@@ -67,17 +69,62 @@ public class MoveUtil {
 
   public static boolean downLeft(Piece piece, Board board, int upIn, int rightIn) {
 
-    for (int i = piece.getX(); i > upIn; i++) {
-      for (int j = piece.getY(); j > rightIn; j--) {
-        if (piece.pieceIsAlly(board, new Move(null, i, j))) {
-          return false;
-        }
+    int y = piece.getY() - 1;
+    for (int i = piece.getX() - 1; i < upIn; i++) {
+      if (piece.pieceIsAlly(board, new Move(null, i, y))) {
+        return false;
       }
+      y--;
+    }
+
+    return true;
+  }
+  
+  public static boolean isDiagonal(Piece piece, Move move) {
+    return Math.abs(piece.getX() - move.getX()) == Math.abs(piece.getY() - move.getY());
+  }
+
+  private static boolean right(Piece piece, Board board, int yIn) {
+
+    for (int i = piece.getY() + 1; i < yIn; i++) {
+      if (piece.pieceIsAlly(board, new Move(null, piece.getX(), i)))
+            return false;
     }
 
     return true;
   }
 
+  private static boolean left(Piece piece, Board board, int yIn) {
+
+    for (int i = piece.getY() - 1; i > yIn; i--) {
+      if (piece.pieceIsAlly(board, new Move(null, piece.getX(), i)))
+            return false;
+    }
+
+    return true;
+  }
+
+  private static boolean up(Piece piece, Board board, int xIn) {
+
+    for (int i = piece.getX() + 1; i < xIn; i++) {
+      if (piece.pieceIsAlly(board, new Move(null, i, piece.getY())))
+            return false;
+    }
+
+    return true;
+  }
+
+  private static boolean down(Piece piece, Board board, int yIn) {
+
+    for (int i = piece.getY() - 1; i > yIn; i--) {
+      if (piece.pieceIsAlly(board, new Move(null, i, piece.getY())))
+            return false;
+    }
+
+    return true;
+  }
+
+  
   private static String getDirection(Piece piece, Board board, Move move) {
 
     int vertic = move.getY() - piece.getY();
@@ -115,46 +162,6 @@ public class MoveUtil {
 
   }
 
-  private static boolean right(Piece piece, Board board, int yIn) {
-
-    for (int i = piece.getY(); i < yIn; i++) {
-      if (piece.pieceIsAlly(board, new Move(null, piece.getX(), i)))
-            return false;
-    }
-
-    return true;
-  }
-
-  private static boolean left(Piece piece, Board board, int yIn) {
-
-    for (int i = piece.getY(); i > yIn; i++) {
-      if (piece.pieceIsAlly(board, new Move(null, piece.getX(), i)))
-            return false;
-    }
-
-    return true;
-  }
-
-  private static boolean up(Piece piece, Board board, int xIn) {
-
-    for (int i = piece.getY(); i > xIn; i++) {
-      if (piece.pieceIsAlly(board, new Move(null, i, piece.getY())))
-            return false;
-    }
-
-    return true;
-  }
-
-  private static boolean down(Piece piece, Board board, int yIn) {
-
-    for (int i = piece.getY(); i < yIn; i++) {
-      if (piece.pieceIsAlly(board, new Move(null, i, piece.getY())))
-            return false;
-    }
-
-    return true;
-  }
-
   public static boolean calculatePossible(Piece piece, Board board, Move move) {
     String direction = getDirection(piece, board, move);
 
@@ -164,6 +171,13 @@ public class MoveUtil {
     int xIn = Math.abs(piece.getX() - move.getX());
     int yIn = Math.abs(piece.getY() - move.getY());
 
+    System.out.println("Calculating possible move");
+    System.out.printf("From x: %s y: %s To x: %s y: %s", piece.getX(), piece.getY(), move.getX(), move.getY());
+    System.out.println("Direction: " + direction);
+    
+    System.out.printf("xIn: %s yIn: %s\n", xIn, yIn);
+    System.out.printf("xP: %s yP: %s\n", piece.getX(), piece.getY());
+    System.out.println("DIRECTION: " + direction);
     if (direction.equals(UP_RIGHT_DIAGONAL))
       return upRight(piece, board, xIn, yIn);
 
@@ -188,6 +202,14 @@ public class MoveUtil {
     else
       return down(piece, board, xIn);
 
+  }
+
+  public static boolean isHorizontal(Piece piece, Move moveTo) {
+    return piece.getX() == moveTo.getX();
+  }
+
+  public static boolean isVertical(Piece piece, Move moveTo) {
+    return piece.getY() == moveTo.getY();
   }
 
 }

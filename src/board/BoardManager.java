@@ -3,10 +3,11 @@ package board;
 import pieces.IllegalMoveException;
 import pieces.*;
 import utils.model.*;
-import board.Board;
 
 public class BoardManager {
     public BoardManager() {}
+
+    //private static Logger logger = Logger.getLogger(BoardManager.class.getName());
 
     public static Response updateBoard(Request request) {
         Board board = request.getBoard();

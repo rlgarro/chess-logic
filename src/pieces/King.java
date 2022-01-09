@@ -48,46 +48,6 @@ public class King extends Piece {
         else if (attackedByHorses(board, kingPos, isKingWhite))
             return true;
 
-        /* for each color
-        //
-        if (board.getPieceAt(kingX, kingY).isWhite == false) {
-
-            // check in same row
-            if (attackedByXorY(board, kingPos, false))
-                return true;
-            
-            // check left diagonal
-            else if (attackedByLeftDiagonal(board, kingPos, false))
-                return true;
-
-            // check right diagonal
-            else if (attackedByRightDiagonal(board, kingPos, false))
-                return true;
-            
-            // by horses
-            else if (attackedByHorses(board, kingPos, false))
-                return true;
-
-        } else {
-
-            // check in same row
-            if (attackedByXorY(board, kingPos, true))
-                return true;
-            
-            // check left diagonal
-            else if (attackedByLeftDiagonal(board, kingPos, true))
-                return true;
-
-            // check right diagonal
-            else if (attackedByRightDiagonal(board, kingPos, true))
-                return true;
-            
-            // by horses
-            else if (attackedByHorses(board, kingPos, true))
-                return true;
-        }
-        */
-
         return false;
     }
 
@@ -307,7 +267,7 @@ public class King extends Piece {
     }
 
     @Override
-    public Boolean isPossibleMove(Board board, Move moveTo) {
+    public boolean isPossibleMove(Board board, Move moveTo) {
         int xTo = moveTo.getX();
         int yTo = moveTo.getY();
         String pieceAt = board.getPieceAt(xTo, yTo);
@@ -334,5 +294,13 @@ public class King extends Piece {
             return false;
         }
         return false;
+    }
+
+    @Override
+    public boolean isValidMovement(Board board, Move moveTo) {
+        int absY = Math.abs(y - moveTo.getY());
+        int absX = Math.abs(x - moveTo.getX());
+        
+        return (absY >= 0 && absY <= 1) && (absX >= 0 && absX <= 1);
     }
 }

@@ -8,7 +8,7 @@ public class Knight extends Piece {
 
 
     @Override
-    public Boolean isPossibleMove(Board board, Move moveTo) {
+    public boolean isPossibleMove(Board board, Move moveTo) {
         Boolean isPossible = false;
 
         // inverse check if the point has the actual position of the horse
@@ -31,6 +31,20 @@ public class Knight extends Piece {
     public Knight(String name, Boolean isWhite, int x, int y) {
         super(name, isWhite, x, y);
         this.pieceNumber = isWhite ? 4 : -4; 
+    }
+
+    @Override
+    public boolean isValidMovement(Board board, Move moveTo) {
+        int xTo = moveTo.getX();
+        int yTo = moveTo.getY();
+
+        if (Math.abs(x - xTo) == 2 && Math.abs(y - yTo) == 1)
+            return true;
+            
+        else if (Math.abs(x - xTo) == 1 && Math.abs(y - yTo) == 2)
+            return true;
+
+        return false;
     }
 
 }
